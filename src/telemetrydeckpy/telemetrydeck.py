@@ -33,10 +33,4 @@ class TelemetryDeck:
         }
 
         req = Request('POST', url, data=json.JSONEncoder().encode([serialise_payload(signal)]), headers=headers)
-
-        print(req.data)
-        print(req.headers)
         resp = s.send(req.prepare())
-
-        print(resp.status_code)
-        print(resp.reason)
