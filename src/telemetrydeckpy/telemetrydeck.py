@@ -1,4 +1,6 @@
 import json
+import logging
+
 from requests import Request, Session
 
 
@@ -33,4 +35,7 @@ class TelemetryDeck:
         }
 
         req = Request('POST', url, data=json.JSONEncoder().encode([serialise_payload(signal)]), headers=headers)
-        resp = s.send(req.prepare())
+        try:
+            resp = s.send(req.prepare())
+        except Exception as e:
+            logging.error(e)
